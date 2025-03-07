@@ -3,15 +3,20 @@ import { Outlet } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './components/Header';
+import { useSelector } from 'react-redux';
+import Foot from './screens/Foot';
 
 const App = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   return (
     <>
-      <Header />
+      {/* {userInfo && <Header />} */}
+      {/* <Header/> */}
       <ToastContainer />
-      <Container className='my-2'>
+      <main>
         <Outlet />
-      </Container>
+        </main>
+        <Foot/>
     </>
   );
 };

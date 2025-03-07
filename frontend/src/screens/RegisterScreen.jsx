@@ -8,12 +8,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRegisterMutation } from '../slices/usersApiSlice';
 import { setCredentials } from '../slices/authSlice';
 import { toast } from 'react-toastify';
+import "../style/Register.css"
 
 const RegisterScreen = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [height,setHeight] = useState();
+  const [weight,setWeight] = useState();
+  const [mobile,setMobile] = useState();
+  const [gender,setGender] = useState();
+  const [dob,setDob] = useState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,7 +41,7 @@ const RegisterScreen = () => {
       toast.error('Passwords do not match');
     } else {
       try {
-        const res = await register({ name, email, password }).unwrap();
+        const res = await register({ name, email, password,height,weight,mobile,gender,dob }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate('/');
       } catch (err) {
@@ -44,61 +50,96 @@ const RegisterScreen = () => {
     }
   };
   return (
-    <FormContainer>
-      <h1>Register</h1>
-      <Form onSubmit={submitHandler}>
-        <Form.Group className='my-2' controlId='name'>
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type='name'
-            placeholder='Enter name'
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+    <div className="na">
+    <div className="registration-container">
+      <h2>Registration Form</h2>
+      <form onSubmit={submitHandler}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e)=>setPassword(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e)=> setConfirmPassword(e.target.value)}
+          required
+        />
+         <input
+          type="number"
+          name="height"
+          placeholder="Height (cm)"
+          required
+          value={height}
+          onChange={(e)=>setHeight(e.target.value)}
+        />
+        <input
+          type="number"
+          name="weight"
+          placeholder="Weight (kg)"
+          required
+          value={weight}
+          onChange={(e)=>setWeight(e.target.value)}
+        />
+       
+         <input
+          type="text"
+          name="gender"
+          placeholder="gender"
+          value={gender}
+          onChange={(e)=>setGender(e.target.value)}
+          required
+        /> 
+        <input
+          type="date"
+          name="dob"
+          required
+          value={dob}
+          onChange={(e)=>setDob(e.target.value)}
+        />
 
-        <Form.Group className='my-2' controlId='email'>
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            type='email'
-            placeholder='Enter email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
 
-        <Form.Group className='my-2' controlId='password'>
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Enter password'
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
-        <Form.Group className='my-2' controlId='confirmPassword'>
-          <Form.Label>Confirm Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Confirm password'
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          ></Form.Control>
-        </Form.Group>
+        <input
+          type="number"
+          name="mobile"
+          placeholder="Mobile No"
+          value={mobile}
+          onChange={(e)=>setMobile(e.target.value)}
+          required
+        /> 
 
-        <Button type='submit' variant='primary' className='mt-3'>
-          Register
-        </Button>
-
+        <button type="submit">Register</button>
         {isLoading && <Loader />}
-      </Form>
-
-      <Row className='py-3'>
-        <Col>
-          Already have an account? <Link to={`/login`}>Login</Link>
-        </Col>
-      </Row>
-    </FormContainer>
+      </form>
+      <div className="row py-3">
+        <div className="col">
+          Already have an account? <Link to="/login" className="link">Login</Link>
+        </div>
+      </div>
+    </div>
+  </div>
   );
 };
 

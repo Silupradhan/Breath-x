@@ -1,0 +1,122 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4; /* Light gray background */
+    font-family: sans-serif;
+    overflow: auto; /* Enable scrolling */
+  }
+  
+  .page {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Limit width on larger screens */
+    overflow: auto; /* Enable scrolling */
+  }
+  
+  .pageContainer {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    overflow: auto; /* Enable scrolling */
+  }
+  
+  .stepIndicator {
+    display: flex;
+    justify-content: center; /* Center the steps */
+    margin-bottom: 2rem;
+  }
+  
+  .step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ddd; /* Light gray for inactive steps */
+    margin: 0 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888; /* Gray text for inactive steps */
+    font-weight: bold;
+    border: 2px solid transparent; /* Transparent border for all steps */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transitions */
+  }
+  
+  .step.active {
+    background-color: #4CAF50; /* Green for active step */
+    color: white;
+    border-color: #4CAF50; /* Match border to background */
+  }
+  
+  .step.completed {
+    background-color: #2196F3; /* Blue for completed steps */
+    color: white;
+    border-color: #2196F3; /* Match border to background */
+  }
+  
+  .card {
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white; /* White card background */
+  }
+  
+  .card h2 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .question {
+    margin-bottom: 1.5rem;
+  }
+  
+  .options {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 1rem; /* Space between buttons */
+  }
+  
+  .options button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .options button.selected {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 1rem; /* Space between buttons */
+    margin-top: 1rem; /* Space above the buttons */
+  }
+  
+  .nextButton, .backButton, .restartButton {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .nextButton:hover, .backButton:hover, .restartButton:hover {
+    background-color: #45a049;
+  }
+  
+  .result {
+    text-align: center;
+  }
+
+  /* Ensure the body allows scrolling */
+body {
+    overflow: auto;
+  }

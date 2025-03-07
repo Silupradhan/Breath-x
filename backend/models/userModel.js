@@ -16,6 +16,30 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    height : {
+      type: Number,
+      required : true,
+    },
+    weight : {
+      type: Number,
+      required : true,
+    },
+    mobile : {
+      type: Number,
+      required : true,
+
+    },
+    gender : {
+      type: String,
+      required : true,
+    },
+    dob : {
+      type: String,
+      required : true,
+
+    },
+     resetPasswordToken: String, // <-- Add this line
+    resetPasswordExpire: Date,  // <-- Add this line
   },
   {
     timestamps: true,

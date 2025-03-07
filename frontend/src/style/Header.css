@@ -1,0 +1,135 @@
+/* Header Styles */
+.header {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    padding: 10px 0;
+  }
+  
+  .container-co {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+  
+  .brand {
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav {
+    list-style-type: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+      display: inline-block;
+      margin: 0 10px;
+  }
+  .nav-item Link{
+      color: white;
+  }
+  
+  .nav-link {
+      padding: 10px 20px;
+      font-size: 16px;
+      text-decoration: none;
+      color: #fff;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+  }
+  
+  .sign-in-btn {
+      background-color: #007bff;
+      border: 1px solid black;
+      color: #000000;
+  }
+  
+  .sign-up-btn {
+      background-color: #28a745;
+      border: 1px solid rgb(164, 164, 164);
+      color: #000000;
+  }
+  
+  .nav-link.active {
+      background-color: #0080ff;
+      color: white;
+      border: none;
+  }
+  
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+    padding: 10px 0;
+    min-width: 160px;
+  }
+  
+  .dropdown-item {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 20px;
+    display: block;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #ffffff;
+  }
+  
+  .nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  
+  .sign-in-btn,
+  .sign-up-btn {
+    background-color: #ffffff;
+    color: #000000;
+  }
+  
+  .sign-in-btn:hover,
+  .sign-up-btn:hover {
+    background-color: #ffffff;
+    color: black;
+  }
+  
+  /* Mobile responsive styles */
+  @media (max-width: 768px) {
+    .navbar {
+      display: none;
+    }
+  
+    .nav-item {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  
+    .container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar.open {
+      display: block;
+    }
+  
+    .navbar .nav {
+      flex-direction: column;
+    }
+  }
+  

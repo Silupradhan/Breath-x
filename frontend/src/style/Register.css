@@ -1,0 +1,170 @@
+/* .registration-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 100px; 
+  }
+  
+  .registration-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .registration-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .registration-container input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .registration-container input:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  .registration-container button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .registration-container button:hover {
+    background-color: #0056b3;
+  } */
+
+  /* src/RegistrationForm.css */
+/* .registration-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+input {
+    flex: 1 1 45%;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+input:nth-child(2n) {
+    margin-right: 0; 
+}
+
+input[type="tel"] {
+    flex: 1 1 100%;
+}
+
+button {
+    flex: 1 1 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #218838;
+} */
+
+
+.na {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('https://th.bing.com/th/id/R.0b42b41799cfcc3da747f6468e0caca0?rik=qs2C9jsTxCK%2fKQ&riu=http%3a%2f%2fwww.parsicuisine.com%2fwp-content%2fuploads%2f2015%2f01%2fhealth.jpg&ehk=SBoj%2bcoeoT9R8QeI1qWmSCFgiA6t8tFXQ89xF0Xrdbo%3d&risl=&pid=ImgRaw&r=0'); /* Add your background image path here */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+  }
+  
+  .registration-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.6); /* Slightly transparent background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .registration-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .registration-container form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+  }
+  
+  .registration-container input {
+    flex: 1 1 45%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .registration-container input:nth-child(2n) {
+    margin-right: 0;
+  }
+  
+  .registration-container input[type="date"],
+  .registration-container input[type="tel"] {
+    flex: 1 1 100%;
+  }
+  
+  .registration-container button {
+    flex: 1 1 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .registration-container button:hover {
+    background-color: #0056b3;
+  }

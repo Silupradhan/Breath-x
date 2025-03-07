@@ -1,0 +1,100 @@
+.login {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    min-height: 100vh; /* Ensure full viewport height */
+    background-image: url('https://th.bing.com/th/id/R.0b42b41799cfcc3da747f6468e0caca0?rik=qs2C9jsTxCK%2fKQ&riu=http%3a%2f%2fwww.parsicuisine.com%2fwp-content%2fuploads%2f2015%2f01%2fhealth.jpg&ehk=SBoj%2bcoeoT9R8QeI1qWmSCFgiA6t8tFXQ89xF0Xrdbo%3d&risl=&pid=ImgRaw&r=0'); /* Add your background image path here */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the background image */
+    background-repeat: no-repeat; /* Prevent the background image from repeating */
+  }
+  
+  .form-container {
+    background-color: rgba(255, 255, 255, 0.6); /* Slightly transparent background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Adjust as needed */
+    border: 1px solid rgb(192, 191, 191);
+  }
+  
+  .form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333; /* Example heading color */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555; /* Example label color */
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #8a8a8a;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: transparent;
+     
+  }
+  
+  .btn-primary1 {  /* Or whatever your button class is */
+    background-color: #007bff; /* Example primary color */
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%; /* Make button full width */
+  }
+  
+  .btn-primary1:hover {
+    background-color: #0069d9;  /* Darker shade on hover */
+  }
+  
+  .btn-primary1:disabled {
+    background-color: #ccc; /* Gray out when disabled */
+    cursor: default;
+  }
+  
+  .row {
+    margin-top: 20px;
+    text-align: center; /* Center the "New Customer?" text */
+  }
+  
+  
+  
+  .link {
+    color: #007bff; /* Example link color */
+    text-decoration: none;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Loader Styling (if applicable) */
+  .loader { /* Adjust based on your Loader component's CSS */
+    margin-top: 15px;
+    text-align: center; /* Center the loader */
+  }
+  /* Example Loader animation - replace with your actual loader styles */
+  .loader::after {
+    content: "..."; /* Or use an image/spinner */
+    animation: dots 1s infinite;
+  }
+  
+  @keyframes dots {
+    0%, 20%, 100% {
+      transform: translateY(0);
+    }
+    60% {
+      transform: translateY(-5px); /* Small bounce effect */
+    }
+  }

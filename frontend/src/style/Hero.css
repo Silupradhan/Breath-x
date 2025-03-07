@@ -1,0 +1,282 @@
+/* App.css */
+* {
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+html, body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+#main {
+  width: 100vw;
+}
+
+#loader {
+  z-index: 999;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  background-color: #111;
+  color: white;
+}
+
+#green {
+  z-index: 999;
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: 100%;
+  background-color: #dd5b5e;
+}
+
+#loader #topHeading {
+  text-align: center;
+  top: 5%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0);
+}
+
+#topHeading {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 300;
+}
+
+#loader h1 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4vw;
+  font-weight: 500;
+}
+
+.reveal .parent {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  overflow: hidden;
+}
+
+.reveal .parent .child {
+  display: block;
+  position: relative;
+}
+
+.reveal span:nth-child(2) {
+  color: #dd5b5e;
+}
+
+#home {
+  background-color: #f0f0f0;
+  height: 100vh;
+  width: 100vw;
+}
+
+#home #nav {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  background-color: #3B071A;
+}
+
+#nav a {
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: .8vw;
+  font-family: mazius;
+  color: white;
+  will-change: transform, opacity, scale;
+}
+
+#logon-img {
+  height: 3vw;
+  width: 11vw;
+}
+
+#nav a .line {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  display: inline-block;
+  transition: cubic-bezier(0.19, 1, 0.22, 1) .8s;
+}
+
+#line1 {
+  left: 0;
+}
+
+#line2 {
+  right: 0;
+}
+
+#nav a:hover .line {
+  width: 0;
+}
+
+.boo {
+  margin-bottom: -7.7vw;
+  margin-top: 5vw;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  color: #111;
+  padding: 0 7vw;
+  padding-right: 12vw;
+  line-height: 1;
+}
+
+.breath {
+
+  font-size: 9vw;
+  font-family: Gilroy;
+  color: #dd5b5e;
+  margin-bottom: 1.6vw;
+  margin-left: 3vw;
+}
+.ana{
+  margin-left: 4vw;
+}
+
+.boo h1.reveal {
+  font-size: 13vw;
+  font-weight: 500;
+  will-change: transform, opacity, scale;
+}
+
+.boo .text h5.reveal {
+  font-weight: 500;
+  font-size: 1.5vh;
+  will-change: transform, opacity;
+}
+
+.boo h5 {
+  opacity: 0.6; /* Default state after animation */
+}
+
+.boo  img {
+  will-change: transform, opacity, scale;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  transition: transform 0.5s, opacity 0.5s;
+  cursor: pointer;
+}
+
+.boo .text {
+  display: flex;
+  flex-direction: column;
+  transform: translate(39%, -236%);
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.row:nth-child(3) {
+  margin-top: 0;
+}
+
+#side-menu {
+  position: fixed;
+  top: 0;
+  right: -30%;
+  width: 30%;
+  height: 100%;
+  background-color: #dd5b5e;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: right 1s ease;
+  padding-top: 20px;
+}
+
+#side-menu.visible {
+  right: 0;
+}
+
+#side-menu .menu-content {
+  width: 100%;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#side-menu .menu-content a {
+  display: block;
+  margin: 20px 0;
+  font-size: 1.5em;
+  color: white;
+  text-decoration: none;
+}
+
+#close-menu {
+  cursor: pointer;
+  font-size: 1.5em;
+  color: white;
+  background: none;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+#close-menu svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+/* .text{
+  margin-left: 10vw;
+} */
+
+.custom-button {
+  background-color: #fce6e6; 
+  color: #6b0f1a; /* Text color */
+  padding: 10px 32px; /* Top & bottom padding, left & right padding */
+  font-size: 16px; /* Text size */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+.custom-button i{
+  padding-right: 8px;
+}
+.no-hover {
+  pointer-events: none; /* Disable hover effects */
+  background-color: #ffffff; /* Ensure background color remains the same */
+  color: rgb(0, 0, 0); /* Ensure text color remains the same */
+  cursor: default; /* Change cursor to default */
+}
+
+.logout-button {
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #f0f0f0;
+}

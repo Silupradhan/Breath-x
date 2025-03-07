@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Risk Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #2ecc71;
+            --warning-color: #e74c3c;
+            --background-color: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--background-color);
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .form-card {
+            grid-column: span 1;
+        }
+
+        .charts-card {
+            grid-column: span 2;
+            display: none;
+        }
+
+        .charts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            padding: 20px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .value-display {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .value-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .metric-card {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: var(--primary-color);
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #666;
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .prediction-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .diabetic {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .non-diabetic {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .glucose-status {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .status-normal { color: var(--success-color); }
+        .status-warning { color: #f39c12; }
+        .status-danger { color: var(--warning-color); }
+
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-card, .charts-card {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="card form-card">
+            <h1>Diabetes Risk Assessment</h1>
+            <form id="predictionForm">
+                <div class="form-group">
+                    <label for="pregnancies">Number of Pregnancies:</label>
+                    <input type="number" id="pregnancies" name="pregnancies" required min="0" step="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="skinThickness">Skin Thickness:</label>
+                    <input type="number" id="skinThickness" name="skinThickness" required min="0" step="0.1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="bmi">BMI:</label>
+                    <input type="number" id="bmi" name="bmi" required min="0" step="0.1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="diabetesPedigree">Diabetes Pedigree Function:</label>
+                    <input type="number" id="diabetesPedigree" name="diabetesPedigree" required min="0" step="0.001">
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" required min="0" step="1">
+                </div>
+                
+                <div class="form-group">
+                    <label for="acetone">Acetone:</label>
+                    <input type="number" id="acetone" name="acetone" required min="0" step="0.1">
+                </div>
+                
+                <button type="submit">Analyze Risk</button>
+            </form>
+        </div>
+
+        <div class="card charts-card" id="results">
+            <h2>Assessment Results</h2>
+            <div id="predictionBadge" class="prediction-badge"></div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Risk Probability</div>
+                    <div id="probabilityValue" class="metric-value">-</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Glucose Level</div>
+                    <div id="glucoseValue" class="metric-value">-</div>
+                    <div id="glucoseStatus" class="glucose-status"></div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Acetone Level</div>
+                    <div id="acetoneValue" class="metric-value">-</div>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-wrapper">
+                    <div class="chart-title">Risk Probability</div>
+                    <canvas id="probabilityGauge"></canvas>
+                    <div class="value-display" id="probabilityDisplay"></div>
+                </div>
+                
+                <div class="chart-wrapper">
+                    <div class="chart-title">Glucose Level</div>
+                    <canvas id="glucoseGauge"></canvas>
+                    <div class="value-display" id="glucoseDisplay"></div>
+                </div>
+                
+                <div class="chart-wrapper">
+                    <div class="chart-title">Risk Distribution</div>
+                    <canvas id="riskPieChart"></canvas>
+                    <div class="value-display" id="riskDisplay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function createGauge(canvasId, value, maxValue, label, color) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            
+            return new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [value, maxValue - value],
+                        backgroundColor: [color, '#ecf0f1'],
+                        circumference: 180,
+                        rotation: -90
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${label}: ${value}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function createPieChart(canvasId, probability) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            
+            return new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Risk', 'Safe'],
+                    datasets: [{
+                        data: [probability, 100 - probability],
+                        backgroundColor: ['#e74c3c', '#2ecc71']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+
+        function getGlucoseStatus(glucose) {
+            if (glucose < 70) return ['Low', 'status-danger'];
+            if (glucose < 100) return ['Normal', 'status-normal'];
+            if (glucose < 126) return ['Pre-diabetic', 'status-warning'];
+            return ['High', 'status-danger'];
+        }
+
+        let probabilityGauge, glucoseGauge, riskPieChart;
+
+        document.getElementById('predictionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const resultsCard = document.getElementById('results');
+            
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert(`Error: ${data.error}`);
+                    return;
+                }
+                
+                // Show results
+                resultsCard.style.display = 'block';
+                
+                // Update prediction badge
+                const predictionBadge = document.getElementById('predictionBadge');
+                predictionBadge.textContent = data.prediction;
+                predictionBadge.className = 'prediction-badge ' + 
+                    (data.prediction === 'Diabetic' ? 'diabetic' : 'non-diabetic');
+                
+                // Parse probability value
+                const probability = parseFloat(data.probability);
+                
+                // Update metric values
+                document.getElementById('probabilityValue').textContent = `${probability.toFixed(1)}%`;
+                document.getElementById('glucoseValue').textContent = `${data.glucose} mg/dL`;
+                document.getElementById('acetoneValue').textContent = formData.get('acetone');
+                
+                // Update glucose status
+                const [statusText, statusClass] = getGlucoseStatus(data.glucose);
+                const glucoseStatus = document.getElementById('glucoseStatus');
+                glucoseStatus.textContent = statusText;
+                glucoseStatus.className = `glucose-status ${statusClass}`;
+                
+                // Destroy existing charts if they exist
+                if (probabilityGauge) probabilityGauge.destroy();
+                if (glucoseGauge) glucoseGauge.destroy();
+                if (riskPieChart) riskPieChart.destroy();
+                
+                // Create new charts
+                probabilityGauge = createGauge(
+                    'probabilityGauge',
+                    probability,
+                    100,
+                    'Risk Probability',
+                    '#e74c3c'
+                );
+                
+                glucoseGauge = createGauge(
+                    'glucoseGauge',
+                    data.glucose,
+                    400,
+                    'Glucose Level',
+                    '#3498db'
+                );
+                
+                riskPieChart = createPieChart('riskPieChart', probability);
+                
+                // Update display values
+                document.getElementById('probabilityDisplay').textContent = `${probability.toFixed(1)}%`;
+                document.getElementById('glucoseDisplay').textContent = `${data.glucose} mg/dL`;
+                document.getElementById('riskDisplay').textContent = data.prediction;
+                
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        });
+    </script>
+</body>
+</html>
